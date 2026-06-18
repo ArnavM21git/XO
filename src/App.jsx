@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect  } from "react"
 import "./App.css"
 
 function App() {
@@ -7,7 +7,12 @@ function App() {
 
   const [xIsNext, setXIsNext] = useState(true)
 
-  
+  useEffect(() => {
+  console.log("Board updated:", board)}, [board])
+
+  useEffect(() => {
+  document.title = `Next: ${xIsNext ? "X" : "O"}`}, [xIsNext])
+
   const winner = calculateWinner(board)
 
   const isDraw = !winner && board.every((cell) => cell !== null)
